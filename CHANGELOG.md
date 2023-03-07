@@ -1,3 +1,7 @@
+## 2.1.0
+
+- Support Flutter 3.7.0
+
 ## 2.0.2
 
 - added localization for no_country text in italian and english (please open a pr with other languages if you know them 🙏)
