@@ -1,6 +1,7 @@
-## 2.1.0
+## 3.0.0 - March 10 2023
 
 - Support Flutter 3.7.0
+- Restructured package follow linter
 
 ## 2.0.2
 
