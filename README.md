@@ -1,4 +1,8 @@
+![GitHub code size](https://img.shields.io/github/languages/code-size/chandrabezzo/CountryCodePicker)
+![GitHub contributors](https://img.shields.io/github/contributors/chandrabezzo/CountryCodePicker)
 [![Pub](https://img.shields.io/pub/v/country_code_picker.svg)](https://pub.dartlang.org/packages/country_code_picker)
+[![Linkedin](https://i.stack.imgur.com/gVE0j.png) LinkedIn](https://www.linkedin.com/in/salvatore-giordano/)
+[![Linkedin](https://i.stack.imgur.com/gVE0j.png) LinkedIn](https://www.linkedin.com/in/chandra-abdul-fattah/)
 
 # country_code_picker
 
@@ -167,3 +171,15 @@ Here is a list of properties available to customize your widget:
 ## Contributions
 
 Contributions of any kind are more than welcome! Feel free to fork and improve country_code_picker in any way you want, make a pull request, or open an issue.
+
+
+## Getting involved
+First of all, thank you for even considering to get involved. You are a real super :star:  and we :heart:  you!
+
+### Reporting bugs and issues
+Use the configured [Github issue report template](https://github.com/imtoori/CountryCodePicker/issues/new?assignees=&labels=&template=bug_report.md&title=) when reporting an issue. Make sure to state your observations and expectations
+as objectively and informative as possible so that we can understand your need and be able to troubleshoot.
+
+### Discussions and ideas
+We're happy to discuss and talk about ideas, post your
+question to [StackOverflow](https://stackoverflow.com/search?q=country+code+picker).
