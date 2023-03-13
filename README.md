@@ -1,6 +1,6 @@
 ![GitHub code size](https://img.shields.io/github/languages/code-size/chandrabezzo/CountryCodePicker)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 ![GitHub contributors](https://img.shields.io/github/contributors/chandrabezzo/CountryCodePicker)
 [![Pub](https://img.shields.io/pub/v/country_code_picker.svg)](https://pub.dartlang.org/packages/country_code_picker)
@@ -197,6 +197,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tbody>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://www.linkedin.com/in/chandra-abdul-fattah"><img src="https://avatars.githubusercontent.com/u/16184998?v=4?s=100" width="100px;" alt="Chandra Abdul Fattah"/><br /><sub><b>Chandra Abdul Fattah</b></sub></a><br /><a href="#infra-chandrabezzo" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/chandrabezzo/CountryCodePicker/commits?author=chandrabezzo" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/imtoori"><img src="https://avatars.githubusercontent.com/u/20601437?v=4?s=100" width="100px;" alt="Salvatore Giordano"/><br /><sub><b>Salvatore Giordano</b></sub></a><br /><a href="#infra-imtoori" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/chandrabezzo/CountryCodePicker/commits?author=imtoori" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
