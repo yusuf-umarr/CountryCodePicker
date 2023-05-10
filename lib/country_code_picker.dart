@@ -3,6 +3,8 @@ library country_code_picker;
 import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter/material.dart';
 
+import 'src/bottom_sheet.dart';
+import 'src/constants.dart';
 import 'src/country_code.dart';
 import 'src/country_codes.dart';
 import 'src/selection_dialog.dart';
@@ -11,6 +13,8 @@ export 'src/country_code.dart';
 export 'src/country_codes.dart';
 export 'src/country_localizations.dart';
 export 'src/selection_dialog.dart';
+export 'src/bottom_sheet.dart';
+export 'src/constants.dart';
 
 class CountryCodePicker extends StatefulWidget {
   final ValueChanged<CountryCode>? onChanged;
@@ -28,6 +32,9 @@ class CountryCodePicker extends StatefulWidget {
   final bool enabled;
   final TextOverflow textOverflow;
   final Icon closeIcon;
+
+  ///Picker style [BottomSheet] or [Dialog]
+  final PickerStyle pickerStyle;
 
   /// Barrier color of ModalBottomSheet
   final Color? barrierColor;
@@ -119,6 +126,7 @@ class CountryCodePicker extends StatefulWidget {
     this.dialogBackgroundColor,
     this.closeIcon = const Icon(Icons.close),
     this.countryList = codes,
+    this.pickerStyle = PickerStyle.dialog,
     Key? key,
   }) : super(key: key);
 
@@ -145,7 +153,7 @@ class CountryCodePicker extends StatefulWidget {
           .toList();
     }
 
-    return CountryCodePickerState(elements);
+    return CountryCodePickerState(elements, pickerStyle);
   }
 }
 
@@ -153,20 +161,27 @@ class CountryCodePickerState extends State<CountryCodePicker> {
   CountryCode? selectedItem;
   List<CountryCode> elements = [];
   List<CountryCode> favoriteElements = [];
+  PickerStyle pickerStyle;
 
-  CountryCodePickerState(this.elements);
+  CountryCodePickerState(this.elements, this.pickerStyle);
 
   @override
   Widget build(BuildContext context) {
     Widget internalWidget;
     if (widget.builder != null) {
       internalWidget = InkWell(
-        onTap: showCountryCodePickerDialog,
+        onTap: pickerStyle == PickerStyle.dialog
+            ? showCountryCodePickerDialog
+            : showCountryCodePickerBottomSheet,
         child: widget.builder!(selectedItem),
       );
     } else {
       internalWidget = TextButton(
-        onPressed: widget.enabled ? showCountryCodePickerDialog : null,
+        onPressed: widget.enabled
+            ? pickerStyle == PickerStyle.dialog
+                ? showCountryCodePickerDialog
+                : showCountryCodePickerBottomSheet
+            : null,
         child: Padding(
           padding: widget.padding,
           child: Flex(
@@ -319,6 +334,43 @@ class CountryCodePickerState extends State<CountryCodePicker> {
 
       _publishSelection(item);
     }
+  }
+
+  void showCountryCodePickerBottomSheet() async {
+    final item = await showModalBottomSheet(
+      isScrollControlled: true,
+      context: context,
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      builder: (ctx) {
+        return SelectionBottomSheet(
+          elements,
+          favoriteElements,
+          showCountryOnly: widget.showCountryOnly,
+          emptySearchBuilder: widget.emptySearchBuilder,
+          searchDecoration: widget.searchDecoration,
+          searchStyle: widget.searchStyle,
+          textStyle: widget.dialogTextStyle,
+          boxDecoration: widget.boxDecoration,
+          showFlag: widget.showFlagDialog ?? widget.showFlag,
+          flagWidth: widget.flagWidth,
+          size: widget.dialogSize,
+          backgroundColor: widget.dialogBackgroundColor,
+          barrierColor: widget.barrierColor,
+          hideSearch: widget.hideSearch,
+          closeIcon: widget.closeIcon,
+          flagDecoration: widget.flagDecoration,
+        );
+      },
+    );
+
+    if (item == null) return;
+
+    setState(() {
+      selectedItem = item;
+    });
+
+    _publishSelection(item);
   }
 
   void _publishSelection(CountryCode countryCode) {

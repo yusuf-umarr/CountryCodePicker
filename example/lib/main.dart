@@ -122,6 +122,7 @@ class MyAppState extends State<MyApp> {
                 flagDecoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
                 ),
+                pickerStyle: PickerStyle.bottomSheet,
               ),
               const SizedBox(
                 width: 400,
