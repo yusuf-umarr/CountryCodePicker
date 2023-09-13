@@ -17,6 +17,7 @@ class SelectionDialog extends StatefulWidget {
   final Decoration? flagDecoration;
   final Size? size;
   final bool hideSearch;
+  final bool hideCloseIcon;
   final Icon? closeIcon;
 
   /// Background color of SelectionDialog
@@ -45,6 +46,7 @@ class SelectionDialog extends StatefulWidget {
     this.backgroundColor,
     this.barrierColor,
     this.hideSearch = false,
+    this.hideCloseIcon = false,
     this.closeIcon,
   })  : searchDecoration = searchDecoration.prefixIcon == null
             ? searchDecoration.copyWith(prefixIcon: const Icon(Icons.search))
@@ -84,6 +86,7 @@ class _SelectionDialogState extends State<SelectionDialog> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
+              if (!widget.hideCloseIcon)
               IconButton(
                 padding: const EdgeInsets.all(0),
                 iconSize: 20,
