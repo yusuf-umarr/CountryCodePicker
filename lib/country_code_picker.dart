@@ -85,6 +85,10 @@ class CountryCodePicker extends StatefulWidget {
   /// with customized codes.
   final List<Map<String, String>> countryList;
 
+  final EdgeInsetsGeometry dialogItemPadding;
+
+  final EdgeInsetsGeometry searchPadding;
+
   const CountryCodePicker({
     this.onChanged,
     this.onInit,
@@ -119,6 +123,8 @@ class CountryCodePicker extends StatefulWidget {
     this.dialogBackgroundColor,
     this.closeIcon = const Icon(Icons.close),
     this.countryList = codes,
+    this.dialogItemPadding = const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+    this.searchPadding = const EdgeInsets.symmetric(horizontal: 24),
     Key? key,
   }) : super(key: key);
 
@@ -307,6 +313,8 @@ class CountryCodePickerState extends State<CountryCodePicker> {
             hideSearch: widget.hideSearch,
             closeIcon: widget.closeIcon,
             flagDecoration: widget.flagDecoration,
+            dialogItemPadding: widget.dialogItemPadding,
+            searchPadding: widget.searchPadding,
           ),
         ),
       ),

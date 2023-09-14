@@ -28,6 +28,10 @@ class SelectionDialog extends StatefulWidget {
   /// elements passed as favorite
   final List<CountryCode> favoriteElements;
 
+  final EdgeInsetsGeometry dialogItemPadding;
+
+  final EdgeInsetsGeometry searchPadding;
+
   SelectionDialog(
     this.elements,
     this.favoriteElements, {
@@ -46,6 +50,8 @@ class SelectionDialog extends StatefulWidget {
     this.barrierColor,
     this.hideSearch = false,
     this.closeIcon,
+    this.dialogItemPadding = const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+    this.searchPadding = const EdgeInsets.symmetric(horizontal: 24),
   })  : searchDecoration = searchDecoration.prefixIcon == null
             ? searchDecoration.copyWith(prefixIcon: const Icon(Icons.search))
             : searchDecoration,
@@ -92,7 +98,7 @@ class _SelectionDialogState extends State<SelectionDialog> {
               ),
               if (!widget.hideSearch)
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  padding: widget.searchPadding,
                   child: TextField(
                     style: widget.searchStyle,
                     decoration: widget.searchDecoration,
@@ -108,12 +114,15 @@ class _SelectionDialogState extends State<SelectionDialog> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               ...widget.favoriteElements.map(
-                                (f) => SimpleDialogOption(
-                                  child: _buildOption(f),
-                                  onPressed: () {
+                                (f) => InkWell(
+                                  onTap: () {
                                     _selectItem(f);
                                   },
-                                ),
+                                  child: Padding(
+                                    padding: widget.dialogItemPadding,
+                                    child: _buildOption(f),
+                                  )
+                                )
                               ),
                               const Divider(),
                             ],
@@ -122,12 +131,15 @@ class _SelectionDialogState extends State<SelectionDialog> {
                       _buildEmptySearchWidget(context)
                     else
                       ...filteredElements.map(
-                        (e) => SimpleDialogOption(
-                          child: _buildOption(e),
-                          onPressed: () {
+                        (e) => InkWell(
+                          onTap: () {
                             _selectItem(e);
                           },
-                        ),
+                          child: Padding(
+                          padding: widget.dialogItemPadding,
+                            child: _buildOption(e),
+                          )
+                        )
                       ),
                   ],
                 ),
