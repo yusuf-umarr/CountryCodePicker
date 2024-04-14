@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart' show kDebugMode;
 
 import 'country_codes.dart';
 import 'country_localizations.dart';
@@ -55,7 +56,7 @@ class CountryCode {
     return CountryCode.fromJson(jsonCode!);
   }
 
-  static CountryCode? tryFromDialCode(String dialCode)
+  static CountryCode? tryFromDialCode(String dialCode) {
     try {
       return CountryCode.fromDialCode(dialCode);
     } catch (e) {
