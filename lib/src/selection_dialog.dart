@@ -92,6 +92,7 @@ class _SelectionDialogState extends State<SelectionDialog> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
+
               if (!widget.hideCloseIcon)
               IconButton(
                 padding: const EdgeInsets.all(0),

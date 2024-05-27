@@ -1,3 +1,7 @@
+## 3.0.1 - May 5 2024
+
+- Support Flutter 3.22.1
+
 ## 3.0.0 - March 10 2023
 
 - Support Flutter 3.7.0
