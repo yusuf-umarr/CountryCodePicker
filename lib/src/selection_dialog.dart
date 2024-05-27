@@ -10,15 +10,20 @@ class SelectionDialog extends StatefulWidget {
   final InputDecoration searchDecoration;
   final TextStyle? searchStyle;
   final TextStyle? textStyle;
+  final TextStyle headerTextStyle;
   final BoxDecoration? boxDecoration;
   final WidgetBuilder? emptySearchBuilder;
   final bool? showFlag;
   final double flagWidth;
+  final String headerText;
   final Decoration? flagDecoration;
   final Size? size;
   final bool hideSearch;
   final bool hideCloseIcon;
+  final bool hideHeaderText;
   final Icon? closeIcon;
+  final EdgeInsets topBarPadding;
+  final MainAxisAlignment headerAlignment;
 
   /// Background color of SelectionDialog
   final Color? backgroundColor;
@@ -38,10 +43,16 @@ class SelectionDialog extends StatefulWidget {
     this.favoriteElements, {
     Key? key,
     this.showCountryOnly,
-    this.emptySearchBuilder,
+    this.hideHeaderText = false,
+    this.emptySearchBuilder,this.headerAlignment =  MainAxisAlignment.spaceBetween,
+    this.headerTextStyle =
+        const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
     InputDecoration searchDecoration = const InputDecoration(),
     this.searchStyle,
     this.textStyle,
+    this.topBarPadding =
+        const EdgeInsets.symmetric(vertical: 5.0, horizontal: 20),
+    this.headerText = "Select Country",
     this.boxDecoration,
     this.showFlag,
     this.flagDecoration,
@@ -52,7 +63,8 @@ class SelectionDialog extends StatefulWidget {
     this.hideSearch = false,
     this.hideCloseIcon = false,
     this.closeIcon,
-    this.dialogItemPadding = const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+    this.dialogItemPadding =
+        const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
     this.searchPadding = const EdgeInsets.symmetric(horizontal: 24),
   })  : searchDecoration = searchDecoration.prefixIcon == null
             ? searchDecoration.copyWith(prefixIcon: const Icon(Icons.search))
@@ -92,13 +104,27 @@ class _SelectionDialogState extends State<SelectionDialog> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-
-              if (!widget.hideCloseIcon)
-              IconButton(
-                padding: const EdgeInsets.all(0),
-                iconSize: 20,
-                icon: widget.closeIcon!,
-                onPressed: () => Navigator.pop(context),
+              Padding(
+                padding: widget.topBarPadding,
+                child: Row(
+                  mainAxisAlignment:widget.headerAlignment,
+                  children: [
+                    !widget.hideHeaderText
+                        ? Text(
+                            widget.headerText,
+                            overflow: TextOverflow.fade,
+                            style: widget.headerTextStyle,
+                          )
+                        : const SizedBox(),
+                    if (!widget.hideCloseIcon)
+                      IconButton(
+                        padding: const EdgeInsets.all(0),
+                        iconSize: 20,
+                        icon: widget.closeIcon!,
+                        onPressed: () => Navigator.pop(context),
+                      ),
+                  ],
+                ),
               ),
               if (!widget.hideSearch)
                 Padding(
@@ -117,34 +143,28 @@ class _SelectionDialogState extends State<SelectionDialog> {
                         : Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              ...widget.favoriteElements.map(
-                                (f) => InkWell(
+                              ...widget.favoriteElements.map((f) => InkWell(
                                   onTap: () {
                                     _selectItem(f);
                                   },
                                   child: Padding(
                                     padding: widget.dialogItemPadding,
                                     child: _buildOption(f),
-                                  )
-                                )
-                              ),
+                                  ))),
                               const Divider(),
                             ],
                           ),
                     if (filteredElements.isEmpty)
                       _buildEmptySearchWidget(context)
                     else
-                      ...filteredElements.map(
-                        (e) => InkWell(
+                      ...filteredElements.map((e) => InkWell(
                           onTap: () {
                             _selectItem(e);
                           },
                           child: Padding(
-                          padding: widget.dialogItemPadding,
+                            padding: widget.dialogItemPadding,
                             child: _buildOption(e),
-                          )
-                        )
-                      ),
+                          ))),
                   ],
                 ),
               ),
