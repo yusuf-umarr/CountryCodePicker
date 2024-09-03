@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart' show IterableExtension;
+import 'package:diacritic/diacritic.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'country_codes.dart';
@@ -47,13 +48,14 @@ class CountryCode {
   }
 
   CountryCode localize(BuildContext context) {
+    final nam = CountryLocalizations.of(context)?.translate(code) ?? name;
     return this
-      ..name = CountryLocalizations.of(context)?.translate(code) ?? name;
+      ..name = nam == null? name : removeDiacritics(nam);
   }
 
   factory CountryCode.fromJson(Map<String, dynamic> json) {
     return CountryCode(
-      name: json['name'],
+      name: removeDiacritics(json['name']),
       code: json['code'],
       dialCode: json['dial_code'],
       flagUri: 'flags/${json['code'].toLowerCase()}.png',
