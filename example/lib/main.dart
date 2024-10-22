@@ -5,7 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 void main() => runApp(const MyApp());
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   MyAppState createState() => MyAppState();
@@ -107,10 +107,12 @@ class MyAppState extends State<MyApp> {
                 favorite: const ['+39', 'FR'],
                 countryFilter: const ['IT', 'FR'],
                 showFlagDialog: false,
-                comparator: (a, b) => b.name.compareTo(a.name),
+                //You can set the margin between the flag and the country name to your taste.
+                margin: const EdgeInsets.symmetric(horizontal: 6),
+                comparator: (a, b) => b.name!.compareTo(a.name!),
                 //Get the country information relevant to the initial selection
                 onInit: (code) => debugPrint(
-                    "on init ${code.name} ${code.dialCode} ${code.name}"),
+                    "on init ${code?.name} ${code?.dialCode} ${code?.name}"),
               ),
               CountryCodePicker(
                 onChanged: print,
