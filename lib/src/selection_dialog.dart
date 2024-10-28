@@ -15,7 +15,7 @@ class SelectionDialog extends StatefulWidget {
   final WidgetBuilder? emptySearchBuilder;
   final bool? showFlag;
   final double flagWidth;
-  final String headerText;
+  final String? headerText;
   final Decoration? flagDecoration;
   final Size? size;
   final bool hideSearch;
