@@ -115,7 +115,7 @@ class _SelectionDialogState extends State<SelectionDialog> {
                             overflow: TextOverflow.fade,
                             style: widget.headerTextStyle,
                           )
-                        : const SizedBox(),
+                        : const SizedBox.shrink(),
                     if (!widget.hideCloseIcon)
                       IconButton(
                         padding: const EdgeInsets.all(0),
