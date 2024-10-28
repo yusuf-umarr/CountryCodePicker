@@ -52,7 +52,7 @@ class SelectionDialog extends StatefulWidget {
     this.textStyle,
     this.topBarPadding =
         const EdgeInsets.symmetric(vertical: 5.0, horizontal: 20),
-    this.headerText = "Select Country",
+    this.headerText,
     this.boxDecoration,
     this.showFlag,
     this.flagDecoration,
