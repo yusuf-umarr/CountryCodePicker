@@ -43,7 +43,7 @@ class SelectionDialog extends StatefulWidget {
     this.favoriteElements, {
     Key? key,
     this.showCountryOnly,
-    this.hideHeaderText = false,
+    this.hideHeaderText = true,
     this.emptySearchBuilder,this.headerAlignment =  MainAxisAlignment.spaceBetween,
     this.headerTextStyle =
         const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
