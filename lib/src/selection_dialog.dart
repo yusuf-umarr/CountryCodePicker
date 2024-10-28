@@ -22,8 +22,8 @@ class SelectionDialog extends StatefulWidget {
   final bool hideCloseIcon;
   final bool hideHeaderText;
   final Icon? closeIcon;
-  final EdgeInsets topBarPadding;
-  final MainAxisAlignment headerAlignment;
+  final EdgeInsets? topBarPadding;
+  final MainAxisAlignment? headerAlignment;
 
   /// Background color of SelectionDialog
   final Color? backgroundColor;
