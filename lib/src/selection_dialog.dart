@@ -10,20 +10,20 @@ class SelectionDialog extends StatefulWidget {
   final InputDecoration searchDecoration;
   final TextStyle? searchStyle;
   final TextStyle? textStyle;
-  final TextStyle? headerTextStyle;
+  final TextStyle headerTextStyle;
   final BoxDecoration? boxDecoration;
   final WidgetBuilder? emptySearchBuilder;
   final bool? showFlag;
   final double flagWidth;
-  final String? headerText;
   final Decoration? flagDecoration;
   final Size? size;
   final bool hideSearch;
   final bool hideCloseIcon;
-  final bool hideHeaderText;
   final Icon? closeIcon;
-  final EdgeInsets? topBarPadding;
-  final MainAxisAlignment? headerAlignment;
+  final bool hideHeaderText;
+  final String? headerText;
+  final EdgeInsets topBarPadding;
+  final MainAxisAlignment headerAlignment;
 
   /// Background color of SelectionDialog
   final Color? backgroundColor;
@@ -43,15 +43,14 @@ class SelectionDialog extends StatefulWidget {
     this.favoriteElements, {
     Key? key,
     this.showCountryOnly,
-    this.hideHeaderText = true,
-    this.emptySearchBuilder,this.headerAlignment =  MainAxisAlignment.spaceBetween,
-    this.headerTextStyle =
-        const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+    required this.hideHeaderText,
+    this.emptySearchBuilder,
+    required this.headerAlignment,
+    required this.headerTextStyle,
     InputDecoration searchDecoration = const InputDecoration(),
     this.searchStyle,
     this.textStyle,
-    this.topBarPadding =
-        const EdgeInsets.symmetric(vertical: 5.0, horizontal: 20),
+   required this.topBarPadding,
     this.headerText,
     this.boxDecoration,
     this.showFlag,
@@ -63,12 +62,9 @@ class SelectionDialog extends StatefulWidget {
     this.hideSearch = false,
     this.hideCloseIcon = false,
     this.closeIcon,
-    this.dialogItemPadding =
-        const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+    this.dialogItemPadding = const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
     this.searchPadding = const EdgeInsets.symmetric(horizontal: 24),
-  })  : searchDecoration = searchDecoration.prefixIcon == null
-            ? searchDecoration.copyWith(prefixIcon: const Icon(Icons.search))
-            : searchDecoration,
+  })  : searchDecoration = searchDecoration.prefixIcon == null ? searchDecoration.copyWith(prefixIcon: const Icon(Icons.search)) : searchDecoration,
         super(key: key);
 
   @override
@@ -85,8 +81,7 @@ class _SelectionDialogState extends State<SelectionDialog> {
         child: Container(
           clipBehavior: Clip.hardEdge,
           width: widget.size?.width ?? MediaQuery.of(context).size.width,
-          height:
-              widget.size?.height ?? MediaQuery.of(context).size.height * 0.85,
+          height: widget.size?.height ?? MediaQuery.of(context).size.height * 0.85,
           decoration: widget.boxDecoration ??
               BoxDecoration(
                 color: widget.backgroundColor ?? Colors.white,
@@ -105,13 +100,13 @@ class _SelectionDialogState extends State<SelectionDialog> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Padding(
-                padding: widget.topBarPadding,
+                padding:!widget.hideHeaderText? widget.topBarPadding: EdgeInsets.zero,
                 child: Row(
-                  mainAxisAlignment:widget.headerAlignment,
+                  mainAxisAlignment: widget.headerAlignment,
                   children: [
-                    !widget.hideHeaderText
+                    !widget.hideHeaderText && widget.headerText != null
                         ? Text(
-                            widget.headerText,
+                            widget.headerText!,
                             overflow: TextOverflow.fade,
                             style: widget.headerTextStyle,
                           )
@@ -182,10 +177,11 @@ class _SelectionDialogState extends State<SelectionDialog> {
           if (widget.showFlag!)
             Flexible(
               child: Container(
-                margin: const EdgeInsets.only(right: 16.0),
+                margin: Directionality.of(context) == TextDirection.ltr    // Here Adding padding depending on the locale language direction
+                    ? const EdgeInsets.only(right: 16.0)
+                    : const EdgeInsets.only(left: 16.0),
                 decoration: widget.flagDecoration,
-                clipBehavior:
-                    widget.flagDecoration == null ? Clip.none : Clip.hardEdge,
+                clipBehavior: widget.flagDecoration == null ? Clip.none : Clip.hardEdge,
                 child: Image.asset(
                   e.flagUri!,
                   package: 'country_code_picker',
@@ -196,9 +192,7 @@ class _SelectionDialogState extends State<SelectionDialog> {
           Expanded(
             flex: 4,
             child: Text(
-              widget.showCountryOnly!
-                  ? e.toCountryStringOnly()
-                  : e.toLongString(),
+              widget.showCountryOnly! ? e.toCountryStringOnly() : e.toLongString(),
               overflow: TextOverflow.fade,
               style: widget.textStyle,
             ),
@@ -214,8 +208,7 @@ class _SelectionDialogState extends State<SelectionDialog> {
     }
 
     return Center(
-      child: Text(CountryLocalizations.of(context)?.translate('no_country') ??
-          'No country found'),
+      child: Text(CountryLocalizations.of(context)?.translate('no_country') ?? 'No country found'),
     );
   }
 
@@ -228,12 +221,7 @@ class _SelectionDialogState extends State<SelectionDialog> {
   void _filterElements(String s) {
     s = s.toUpperCase();
     setState(() {
-      filteredElements = widget.elements
-          .where((e) =>
-              e.code!.contains(s) ||
-              e.dialCode!.contains(s) ||
-              e.name!.toUpperCase().contains(s))
-          .toList();
+      filteredElements = widget.elements.where((e) => e.code!.contains(s) || e.dialCode!.contains(s) || e.name!.toUpperCase().contains(s)).toList();
     });
   }
 
