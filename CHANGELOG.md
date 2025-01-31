@@ -1,10 +1,11 @@
-## 3.0.0 - March 10 2023
+## 3.1.0 - October 24 2024
+- Add some improvement
 
+## 3.0.0 - March 10 2023
 - Support Flutter 3.7.0
 - Restructured package follow linter
 
 ## 2.0.2
-
 - added localization for no_country text in italian and english (please open a pr with other languages if you know them 🙏)
 - added possibility to inject a custom list of countries using `CountryCodePicker.countryList`
 - minor fixes
