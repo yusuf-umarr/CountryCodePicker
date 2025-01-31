@@ -88,7 +88,7 @@ class _SelectionDialogState extends State<SelectionDialog> {
                 borderRadius: const BorderRadius.all(Radius.circular(8.0)),
                 boxShadow: [
                   BoxShadow(
-                    color: widget.barrierColor ?? Colors.grey.withOpacity(1),
+                    color: widget.barrierColor ?? Colors.grey.withAlpha(255),
                     spreadRadius: 5,
                     blurRadius: 7,
                     offset: const Offset(0, 3), // changes position of shadow

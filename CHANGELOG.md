@@ -1,3 +1,8 @@
+## 3.2.0 - January 31 2025
+- Add country code picker style #6
+- Remove Special Character #37
+- Fixes for Flutter and Dart SDK Updates and Enhancements #44
+
 ## 3.1.0 - October 24 2024
 - Add some improvement
 
