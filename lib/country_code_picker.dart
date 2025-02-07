@@ -156,7 +156,7 @@ class CountryCodePicker extends StatefulWidget {
         const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
     this.searchPadding = const EdgeInsets.symmetric(horizontal: 24),
     this.headerAlignment = MainAxisAlignment.spaceBetween,
-    this.headerText = "Select County",
+    this.headerText = "Select Country",
     this.headerTextStyle =
         const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
     this.hideHeaderText = false,
