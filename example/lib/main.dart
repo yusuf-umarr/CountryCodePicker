@@ -89,6 +89,7 @@ class MyAppState extends State<MyApp> {
       ],
       localizationsDelegates: const [
         CountryLocalizations.delegate,
+       /// CountryLocalizations.getDelegate(enableLocalization: false),  // For no localization only english just declare delegate this way.
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
