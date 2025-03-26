@@ -1,3 +1,6 @@
+## 3.3.0 - March 26 2025
+- Fix localization, typo, and flag issue #51 thanks to @MrRoy121
+
 ## 3.2.0 - January 31 2025
 - Add country code picker style #6
 - Remove Special Character #37
