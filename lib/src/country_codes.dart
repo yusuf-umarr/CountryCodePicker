@@ -152,7 +152,7 @@ const List<Map<String, String>> codes = [
   },
   {"name": "ኤርትራ", "code": "ER", "iso3Code": "ERI", "dial_code": "+291"},
   {"name": "Eesti", "code": "EE", "iso3Code": "EST", "dial_code": "+372"},
-  {"name": "ኢትዮጵያ", "code": "ET", "iso3Code": "ETH", "dial_code": "+251"},
+  {"name": "Ethiopia", "code": "ET", "iso3Code": "ETH", "dial_code": "+251"},
   {
     "name": "Falkland Islands",
     "code": "FK",
